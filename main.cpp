@@ -1,17 +1,19 @@
+#include <cassert>
 #include <iostream>
 #include <string>
+#include <vector>
 
-int main(int argc, char* argv[]) 
+int do_main(const std::vector<std::string>& args) 
 {
-  if (argc != 2) 
+  if (args.size() != 2) 
   {
     return 1;
   }
-  if (std::string(argv[1]) == "true") 
+  if (args[1] == "true") 
   { 
     std::cout << "heads\n";   
   }
-  else if (std::string(argv[1]) == "false") 
+  else if (args[1] == "false") 
   { 
     std::cout << "tails\n"; 
   }
@@ -19,4 +21,15 @@ int main(int argc, char* argv[])
   {
     return 1;
   }
+  return 0;
+}
+
+int main(int argc, char* argv[])
+{
+  assert(do_main( { "bool_to_coin" } ) == 1);
+  assert(do_main( { "bool_to_coin", "true" } ) == 0);
+  assert(do_main( { "bool_to_coin", "false" } ) == 0);
+  assert(do_main( { "bool_to_coin", "nonsense" } ) == 1);
+  assert(do_main( { "bool_to_coin", "true", "false" } ) == 1);
+  return do_main(std::vector<std::string>(argv, argv + argc));
 }
