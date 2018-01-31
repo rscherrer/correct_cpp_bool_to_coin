@@ -61,4 +61,4 @@ int main(int argc, char* argv[])
 
 ## External links
 
- * [Download the Qt Creator file `main.pro`](https://raw.githubusercontent.com/richelbilderbeek/correct_cpp/master/shared/main.pro)
+ * [none]
