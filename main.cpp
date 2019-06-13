@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+
 /// Main function
 int main(int argc, char * argv[]) {
 
@@ -26,7 +27,9 @@ int main(int argc, char * argv[]) {
 
             coin = "tails";
 
-        } else if (argument != "true") {
+        }
+
+        if (argument != "true") {
 
             throw std::runtime_error("The argument was neither true or false. Please provide either true or false.");
 
