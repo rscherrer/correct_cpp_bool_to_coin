@@ -3,13 +3,23 @@
 #include <vector>
 #include <iostream>
 
-// Write a program that succeeds if there is just one argument, and fails otherwise
+// Write a program that returns heads for a true, tails for a false and fails if there are no,
+// too many arguments, or if the arguments are neither true or false
 
 int doMain(const std::vector<std::string>& args)
 {
     const size_t argc = args.size();
     if (argc == 2u) {
-        return 0;
+        if (args[1] == "true") {
+            std::cout << "heads\n";
+        }
+        else if (args[1] == "false") {
+            std::cout << "tails\n";
+        }
+        else {
+            std::cout << "The argument was neither true or false.\n";
+            return 1;
+        }
     }
     else {
 
@@ -22,6 +32,7 @@ int doMain(const std::vector<std::string>& args)
 
         return 1;
     }
+    return 0;
 }
 
 int main(int argc, char * argv[])
@@ -32,8 +43,10 @@ int main(int argc, char * argv[])
     const std::string programName(args[0]);
 
     assert(doMain( { programName } ) == 1);
-    assert(doMain( { programName, "arg1" } ) == 0);
-    assert(doMain( { programName, "arg1", "arg2" } ) == 1);
+    assert(doMain( { programName, "true" } ) == 0);
+    assert(doMain( { programName, "false" } ) == 0);
+    assert(doMain( { programName, "true", "true" } ) == 1);
+    assert(doMain( { programName, "nonsense" } ) == 1);
 
     return doMain(args);
 
