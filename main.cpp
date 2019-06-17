@@ -6,6 +6,7 @@
 // Write a program that returns heads for a true, tails for a false and fails if there are no,
 // too many arguments, or if the arguments are neither true or false
 
+/// Do the main function
 int doMain(const std::vector<std::string>& args)
 {
     const size_t argc = args.size();
@@ -35,6 +36,7 @@ int doMain(const std::vector<std::string>& args)
     return 0;
 }
 
+/// Main function
 int main(int argc, char * argv[])
 {
 
