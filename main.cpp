@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cassert>
 
 /// Do the main
 int doMain(const std::vector<std::string>& args) noexcept
@@ -51,8 +52,14 @@ int doMain(const std::vector<std::string>& args) noexcept
 int main(int argc, char * argv[])
 {
 
-    const std::vector<std::string> args(argv, argv + argc);
+    // Tests
+    assert(doMain( { "bool_to_coin" } ) == 1);
+    assert(doMain( { "bool_to_coin", "true" } ) == 0);
+    assert(doMain( { "bool_to_coin", "false" } ) == 0);
+    assert(doMain( { "bool_to_coin", "true", "true" } ) == 1);
+    assert(doMain( { "bool_to_coin", "nonsense" } ) == 0);
 
+    const std::vector<std::string> args(argv, argv + argc);
     const int out = doMain(args);
 
     return out;
