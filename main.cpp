@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
-
-/// Main function
-int main(int argc, char * argv[]) {
-
+/// Do the main
+int doMain(const std::vector<std::string>& args) noexcept
+{
     try {
+
+        const size_t argc = args.size();
 
         // Initialize the coin side
         std::string coin = "heads";
@@ -19,17 +21,13 @@ int main(int argc, char * argv[]) {
             throw std::runtime_error("More than one argument were provided. Please provide exactly one argument.");
         }
 
-        // Convert to string
-        std::string argument(argv[1]);
-
         // Change coin side if needed and check for validity of the input string
-        if (argument == "false") {
+        if (args[1] == "false") {
 
             coin = "tails";
 
         }
-
-        if (argument != "true") {
+        else if (args[1] != "true") {
 
             throw std::runtime_error("The argument was neither true or false. Please provide either true or false.");
 
@@ -47,5 +45,16 @@ int main(int argc, char * argv[]) {
     }
 
     exit(EXIT_SUCCESS);
+}
+
+/// Main function
+int main(int argc, char * argv[])
+{
+
+    const std::vector<std::string> args(argv, argv + argc);
+
+    const int out = doMain(args);
+
+    return out;
 
 }
